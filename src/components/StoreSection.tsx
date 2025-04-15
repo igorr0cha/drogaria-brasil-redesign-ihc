@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Phone, Clock } from 'lucide-react';
+import { useCarousel } from "@/hooks/useCarousel";
 
 const storeImages = [
   "https://images.unsplash.com/photo-1612837017391-4b6b7b0b2b0b?q=80&w=800&auto=format&fit=crop",
@@ -13,6 +14,11 @@ const storeImages = [
 
 const StoreSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { api, setApi } = useCarousel({
+    loop: true,
+    autoplay: true,
+    interval: 5000,
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,15 +47,15 @@ const StoreSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="section" ref={sectionRef}>
-      <div className="container mx-auto">
+    <section className="section py-16 bg-gray-50" ref={sectionRef}>
+      <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 scroll-animation">
           Nosso <span className="text-db-green">Espaço</span>
         </h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="scroll-animation">
-            <Carousel className="w-full">
+            <Carousel setApi={setApi} className="w-full">
               <CarouselContent>
                 {storeImages.map((image, index) => (
                   <CarouselItem key={index}>

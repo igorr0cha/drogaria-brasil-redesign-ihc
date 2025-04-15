@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { useLocation } from 'react-router-dom';
+import { initGlobalAnimations } from '@/utils/scrollAnimations';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,24 +17,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     window.scrollTo(0, 0);
     
     // Initialize scroll animations
-    const animateOnScroll = () => {
-      const elements = document.querySelectorAll('.scroll-animation');
-      elements.forEach((element) => {
-        const elementPosition = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight * 0.85;
-        
-        if (elementPosition < screenPosition) {
-          element.classList.add('show');
-        }
-      });
-    };
+    const cleanup = initGlobalAnimations();
     
-    animateOnScroll(); // Run once on page load
-    window.addEventListener('scroll', animateOnScroll);
-    
-    return () => {
-      window.removeEventListener('scroll', animateOnScroll);
-    };
+    return cleanup;
   }, [location.pathname]);
   
   return (

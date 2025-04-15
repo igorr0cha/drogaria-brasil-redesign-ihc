@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { initScrollAnimations } from '@/utils/scrollAnimations';
 
 const ContactPage: React.FC = () => {
   const { toast } = useToast();
@@ -13,6 +14,11 @@ const ContactPage: React.FC = () => {
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  useEffect(() => {
+    const cleanup = initScrollAnimations();
+    return cleanup;
+  }, []);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -43,16 +49,16 @@ const ContactPage: React.FC = () => {
   
   return (
     <div className="min-h-screen pt-20">
-      <div className="relative h-64 md:h-80 overflow-hidden">
+      <div className="relative h-80 md:h-96 overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(https://images.unsplash.com/photo-1565908389223-d9651079a586?q=80&w=1920&auto=format&fit=crop)` }}
+          style={{ backgroundImage: `url(https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=1920&auto=format&fit=crop)` }}
         >
-          <div className="absolute inset-0 bg-db-dark/50 flex items-center justify-center">
-            <div className="text-center text-white">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Atendimento</h1>
-              <p className="text-xl max-w-2xl mx-auto px-4">
-                Estamos aqui para ajudar você. Entre em contato conosco.
+          <div className="absolute inset-0 bg-gradient-to-b from-db-dark/70 to-db-dark/90 flex items-center justify-center">
+            <div className="text-center text-white px-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 scroll-animation">Atendimento</h1>
+              <p className="text-xl max-w-2xl mx-auto scroll-animation">
+                Estamos aqui para cuidar de você. Nossa equipe está pronta para atender todas as suas necessidades.
               </p>
             </div>
           </div>
@@ -61,7 +67,7 @@ const ContactPage: React.FC = () => {
       
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md scroll-animation">
             <div className="flex items-start">
               <div className="h-12 w-12 rounded-full bg-db-green/10 flex items-center justify-center flex-shrink-0">
                 <Phone className="h-6 w-6 text-db-green" />
@@ -77,7 +83,7 @@ const ContactPage: React.FC = () => {
             </div>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md scroll-animation" style={{animationDelay: "0.2s"}}>
             <div className="flex items-start">
               <div className="h-12 w-12 rounded-full bg-db-green/10 flex items-center justify-center flex-shrink-0">
                 <Mail className="h-6 w-6 text-db-green" />
@@ -93,7 +99,7 @@ const ContactPage: React.FC = () => {
             </div>
           </div>
           
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg shadow-md scroll-animation" style={{animationDelay: "0.4s"}}>
             <div className="flex items-start">
               <div className="h-12 w-12 rounded-full bg-db-green/10 flex items-center justify-center flex-shrink-0">
                 <Clock className="h-6 w-6 text-db-green" />
@@ -109,9 +115,9 @@ const ContactPage: React.FC = () => {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
+          <div className="scroll-animation">
             <h2 className="text-2xl font-bold mb-6">Envie-nos uma mensagem</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block mb-2 font-medium text-gray-700">
@@ -223,9 +229,9 @@ const ContactPage: React.FC = () => {
             </form>
           </div>
           
-          <div>
+          <div className="scroll-animation" style={{animationDelay: "0.3s"}}>
             <h2 className="text-2xl font-bold mb-6">Nossa Localização</h2>
-            <div className="rounded-lg overflow-hidden shadow-lg mb-6">
+            <div className="bg-white rounded-lg overflow-hidden shadow-lg mb-6">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3675.356219798796!2d-43.18056692559831!3d-22.90363397929868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997f58a6a00a9d%3A0x3f251d85272f76f7!2sAv.%20Rio%20Branco%2C%20Centro%2C%20Rio%20de%20Janeiro%20-%20RJ!5e0!3m2!1spt-BR!2sbr!4v1714212310985!5m2!1spt-BR!2sbr" 
                 width="100%" 

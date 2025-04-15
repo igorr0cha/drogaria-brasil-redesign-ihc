@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { Card, CardContent } from "@/components/ui/card";
+import { useCarousel } from "@/hooks/useCarousel";
 
 interface SlideProps {
   image: string;
@@ -33,9 +33,15 @@ const slides: SlideProps[] = [
 ];
 
 const HomeCarousel: React.FC = () => {
+  const { api, setApi } = useCarousel({
+    loop: true,
+    autoplay: true,
+    interval: 6000,
+  });
+
   return (
     <div className="w-full mt-16">
-      <Carousel className="w-full">
+      <Carousel setApi={setApi} className="w-full">
         <CarouselContent>
           {slides.map((slide, index) => (
             <CarouselItem key={index}>

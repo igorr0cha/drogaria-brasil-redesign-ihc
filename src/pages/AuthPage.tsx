@@ -1,8 +1,9 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Phone, FileText, CheckSquare } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { initScrollAnimations } from '@/utils/scrollAnimations';
 
 const AuthPage: React.FC<{ type: 'login' | 'register' }> = ({ type }) => {
   const navigate = useNavigate();
@@ -18,6 +19,11 @@ const AuthPage: React.FC<{ type: 'login' | 'register' }> = ({ type }) => {
     terms: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  useEffect(() => {
+    const cleanup = initScrollAnimations();
+    return cleanup;
+  }, []);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, checked, type } = e.target;
@@ -78,54 +84,84 @@ const AuthPage: React.FC<{ type: 'login' | 'register' }> = ({ type }) => {
   };
   
   return (
-    <div className="min-h-screen pt-16 pb-12 flex items-center justify-center">
-      <div className="container mx-auto px-4">
-        <div className="max-w-lg mx-auto">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h1 className="text-2xl font-bold mb-6 text-center">
-              {type === 'login' ? 'Login' : 'Criar Conta'}
-            </h1>
+    <div className="min-h-screen flex items-center justify-center py-16">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-db-blue/5 to-db-green/5 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=2070')] bg-cover bg-center opacity-10"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-md mx-auto scroll-animation">
+          <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-8 border border-gray-100">
+            <div className="text-center mb-8">
+              <div className="inline-block bg-gradient-to-r from-db-green to-db-blue p-3 rounded-full mb-4">
+                {type === 'login' ? (
+                  <Lock className="h-6 w-6 text-white" />
+                ) : (
+                  <User className="h-6 w-6 text-white" />
+                )}
+              </div>
+              <h1 className="text-2xl font-bold mb-2">
+                {type === 'login' ? 'Bem-vindo de volta!' : 'Crie sua conta'}
+              </h1>
+              <p className="text-gray-600 text-sm">
+                {type === 'login' ? 'Insira seus dados para acessar sua conta' : 'Preencha o formulário para fazer parte da família Drogarias Brasil'}
+              </p>
+            </div>
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {type === 'register' && (
                 <div>
-                  <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700">
+                  <label htmlFor="name" className="block mb-1.5 text-sm font-medium text-gray-700">
                     Nome completo
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
-                    placeholder="Digite seu nome completo"
-                  />
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <User className="h-5 w-5 text-gray-400" />
+                    </div>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
+                      placeholder="Digite seu nome completo"
+                    />
+                  </div>
                 </div>
               )}
               
               <div>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
+                <label htmlFor="email" className="block mb-1.5 text-sm font-medium text-gray-700">
                   E-mail
                 </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
-                  placeholder="Digite seu e-mail"
-                />
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <Mail className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
+                    placeholder="Digite seu e-mail"
+                  />
+                </div>
               </div>
               
               <div>
-                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-700">
+                <label htmlFor="password" className="block mb-1.5 text-sm font-medium text-gray-700">
                   Senha
                 </label>
                 <div className="relative">
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <Lock className="h-5 w-5 text-gray-400" />
+                  </div>
                   <input
                     type={showPassword ? "text" : "password"}
                     id="password"
@@ -133,16 +169,16 @@ const AuthPage: React.FC<{ type: 'login' | 'register' }> = ({ type }) => {
                     value={formData.password}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
+                    className="w-full pl-10 pr-10 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
                     placeholder="Digite sua senha"
                   />
                   <button
                     type="button"
                     onClick={togglePasswordVisibility}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                     aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
                   >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
                   </button>
                 </div>
               </div>
@@ -150,10 +186,13 @@ const AuthPage: React.FC<{ type: 'login' | 'register' }> = ({ type }) => {
               {type === 'register' && (
                 <>
                   <div>
-                    <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-700">
+                    <label htmlFor="confirmPassword" className="block mb-1.5 text-sm font-medium text-gray-700">
                       Confirmar senha
                     </label>
                     <div className="relative">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <Lock className="h-5 w-5 text-gray-400" />
+                      </div>
                       <input
                         type={showPassword ? "text" : "password"}
                         id="confirmPassword"
@@ -161,60 +200,72 @@ const AuthPage: React.FC<{ type: 'login' | 'register' }> = ({ type }) => {
                         value={formData.confirmPassword}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
+                        className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
                         placeholder="Confirme sua senha"
                       />
                     </div>
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-700">
+                    <label htmlFor="phone" className="block mb-1.5 text-sm font-medium text-gray-700">
                       Telefone
                     </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
-                      placeholder="(00) 00000-0000"
-                    />
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <Phone className="h-5 w-5 text-gray-400" />
+                      </div>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
+                        placeholder="(00) 00000-0000"
+                      />
+                    </div>
                   </div>
                   
                   <div>
-                    <label htmlFor="document" className="block mb-2 text-sm font-medium text-gray-700">
+                    <label htmlFor="document" className="block mb-1.5 text-sm font-medium text-gray-700">
                       CPF
                     </label>
-                    <input
-                      type="text"
-                      id="document"
-                      name="document"
-                      value={formData.document}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
-                      placeholder="000.000.000-00"
-                    />
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <FileText className="h-5 w-5 text-gray-400" />
+                      </div>
+                      <input
+                        type="text"
+                        id="document"
+                        name="document"
+                        value={formData.document}
+                        onChange={handleChange}
+                        required
+                        className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
+                        placeholder="000.000.000-00"
+                      />
+                    </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="terms"
-                      name="terms"
-                      checked={formData.terms}
-                      onChange={handleChange}
-                      className="mt-1 h-4 w-4 text-db-green border-gray-300 rounded focus:ring-db-green"
-                    />
+                    <div className="flex items-center h-5">
+                      <input
+                        type="checkbox"
+                        id="terms"
+                        name="terms"
+                        checked={formData.terms}
+                        onChange={handleChange}
+                        className="w-4 h-4 text-db-green border-gray-300 rounded focus:ring-db-green"
+                      />
+                    </div>
                     <label htmlFor="terms" className="ml-2 text-sm text-gray-600">
                       Eu concordo com os {' '}
-                      <a href="/termos" className="text-db-blue hover:underline">
+                      <a href="/termos" className="text-db-blue hover:underline font-medium">
                         Termos de Uso
                       </a>
                       {' '} e {' '}
-                      <a href="/privacidade" className="text-db-blue hover:underline">
+                      <a href="/privacidade" className="text-db-blue hover:underline font-medium">
                         Política de Privacidade
                       </a>
                     </label>
@@ -235,7 +286,7 @@ const AuthPage: React.FC<{ type: 'login' | 'register' }> = ({ type }) => {
                       Lembrar-me
                     </label>
                   </div>
-                  <a href="/recuperar-senha" className="text-sm text-db-blue hover:underline">
+                  <a href="/recuperar-senha" className="text-sm text-db-blue hover:underline font-medium">
                     Esqueceu sua senha?
                   </a>
                 </div>
@@ -244,7 +295,7 @@ const AuthPage: React.FC<{ type: 'login' | 'register' }> = ({ type }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-primary py-2.5"
+                className="w-full btn-primary py-2.5 rounded-lg transition-all transform hover:scale-[1.02] active:scale-[0.98]"
               >
                 {isSubmitting ? (
                   <span className="flex items-center justify-center">
@@ -259,7 +310,7 @@ const AuthPage: React.FC<{ type: 'login' | 'register' }> = ({ type }) => {
                 )}
               </button>
               
-              <div className="text-center">
+              <div className="text-center mt-6">
                 {type === 'login' ? (
                   <p className="text-sm text-gray-600">
                     Não tem uma conta? {' '}

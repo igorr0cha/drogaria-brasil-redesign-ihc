@@ -111,40 +111,45 @@ const SearchBar: React.FC = () => {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => query.length > 1 && setIsOpen(true)}
-            className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-db-green focus:border-transparent"
+            className="w-full pl-12 pr-4 py-3 border-none shadow-md rounded-full focus:outline-none focus:ring-2 focus:ring-db-green bg-white text-gray-800"
+            aria-label="Campo de pesquisa"
           />
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+          <div className="absolute left-0 top-0 h-full w-12 flex items-center justify-center">
+            <Search className="h-5 w-5 text-db-green" />
+          </div>
           {query && (
             <button 
               type="button" 
               onClick={() => setQuery('')}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-200 rounded-full p-1 hover:bg-gray-300 transition-colors"
               aria-label="Limpar busca"
             >
-              <X className="h-5 w-5 text-gray-400" />
+              <X className="h-4 w-4 text-gray-600" />
             </button>
           )}
         </div>
       </form>
       
       {isOpen && suggestions.length > 0 && (
-        <div className="absolute w-full mt-1 bg-white rounded-lg shadow-lg z-50 max-h-[400px] overflow-y-auto">
-          <div className="p-2">
-            <h3 className="text-sm font-medium text-gray-500 mb-2">Sugestões</h3>
-            <div className="space-y-2">
+        <div className="absolute w-full mt-2 bg-white rounded-lg shadow-xl z-50 max-h-[400px] overflow-y-auto border border-gray-100">
+          <div className="p-4">
+            <h3 className="text-sm font-medium text-gray-500 mb-3">Sugestões</h3>
+            <div className="space-y-3">
               {suggestions.map((product) => (
                 <div 
                   key={product.id}
                   onClick={() => handleSuggestionClick(product.id)}
-                  className="flex items-center p-2 rounded-lg hover:bg-gray-100 cursor-pointer"
+                  className="flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
                 >
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-10 h-10 object-cover rounded"
-                  />
-                  <div className="ml-3 flex-1">
-                    <div className="text-sm font-medium">{product.name}</div>
+                  <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="ml-4 flex-1">
+                    <div className="text-sm font-medium text-gray-800">{product.name}</div>
                     <div className="text-xs text-gray-500">{product.category}</div>
                   </div>
                   <div className="text-db-green font-medium">
@@ -153,7 +158,7 @@ const SearchBar: React.FC = () => {
                 </div>
               ))}
             </div>
-            <div className="mt-3 pt-2 border-t text-center">
+            <div className="mt-4 pt-3 border-t text-center">
               <button 
                 onClick={handleSearchSubmit}
                 className="text-db-blue text-sm font-medium hover:underline"
