@@ -13,7 +13,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from '@/comp
 
 const CheckoutPage: React.FC = () => {
   const navigate = useNavigate();
-  const { cartItems, total, clearCart } = useCart();
+  const { cartItems = [], total = 0, clearCart } = useCart();
   const { toast } = useToast();
   const [isLoggedIn] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
@@ -56,6 +56,18 @@ const CheckoutPage: React.FC = () => {
       navigate(-1);
     }
   };
+
+  // If cart is empty and not in the first step (address), redirect to home
+  React.useEffect(() => {
+    if (cartItems.length === 0 && activeStep > 1) {
+      navigate('/');
+      toast({
+        title: "Carrinho vazio",
+        description: "Adicione produtos ao seu carrinho antes de finalizar a compra.",
+        variant: "destructive",
+      });
+    }
+  }, [cartItems, activeStep, navigate, toast]);
   
   return (
     <div className="min-h-screen pt-20">
@@ -398,26 +410,32 @@ const CheckoutPage: React.FC = () => {
               <h2 className="text-xl font-bold mb-4">Resumo do Pedido</h2>
               
               <div className="space-y-4 mb-6">
-                {cartItems.map((item) => (
-                  <div key={item.id} className="flex items-center">
-                    <div className="h-16 w-16 rounded-md overflow-hidden flex-shrink-0">
-                      <img 
-                        src={item.image} 
-                        alt={item.name} 
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="ml-4 flex-1">
-                      <p className="text-sm font-medium line-clamp-2">{item.name}</p>
-                      <div className="flex items-center justify-between mt-1">
-                        <p className="text-sm text-gray-500">Qtd: {item.quantity}</p>
-                        <p className="font-medium">
-                          {(item.price * item.quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
-                        </p>
+                {cartItems && cartItems.length > 0 ? (
+                  cartItems.map((item) => (
+                    <div key={item.id} className="flex items-center">
+                      <div className="h-16 w-16 rounded-md overflow-hidden flex-shrink-0">
+                        <img 
+                          src={item.image} 
+                          alt={item.name} 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="ml-4 flex-1">
+                        <p className="text-sm font-medium line-clamp-2">{item.name}</p>
+                        <div className="flex items-center justify-between mt-1">
+                          <p className="text-sm text-gray-500">Qtd: {item.quantity}</p>
+                          <p className="font-medium">
+                            {(item.price * item.quantity).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                          </p>
+                        </div>
                       </div>
                     </div>
+                  ))
+                ) : (
+                  <div className="text-center py-4">
+                    <p className="text-gray-500">Seu carrinho está vazio</p>
                   </div>
-                ))}
+                )}
               </div>
               
               <Separator className="my-4" />
