@@ -17,12 +17,12 @@ const slides: SlideProps[] = [
     slogan: "Cuidando de você há décadas"
   },
   {
-    image: "https://images.unsplash.com/photo-1577368211130-4bbb93af856d?q=80&w=1800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     title: "Confiança há mais de 50 anos",
     slogan: "A farmácia que o Brasil confia"
   },
   {
-    image: "https://images.unsplash.com/photo-1586015555751-63c29b8cd2a9?q=80&w=1800&auto=format&fit=crop",
+    image: "https://images.pexels.com/photos/11899614/pexels-photo-11899614.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     title: "Entrega rápida com cuidado e carinho",
     slogan: "Do nosso balcão para sua casa"
   },

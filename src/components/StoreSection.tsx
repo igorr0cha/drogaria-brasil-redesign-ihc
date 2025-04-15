@@ -6,8 +6,8 @@ import { MapPin, Phone, Clock } from 'lucide-react';
 import { useCarousel } from "@/hooks/useCarousel";
 
 const storeImages = [
-  "https://images.unsplash.com/photo-1612837017391-4b6b7b0b2b0b?q=80&w=800&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=800&auto=format&fit=crop",
+  "https://www.google.com.br/maps/place/Drogaria+Brasil+Pra%C3%A7a+da+Bandeira/@-22.9114269,-43.2140818,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipP0ZwYe9Z5LMdXmTrzIPo_S-dadNmhRrsTSaVIi!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipP0ZwYe9Z5LMdXmTrzIPo_S-dadNmhRrsTSaVIi%3Dw203-h214-k-no!7i2092!8i2212!4m16!1m8!3m7!1s0x997f10a6d8f151:0x8f170e262709198a!2sDrogaria+Brasil+Pra%C3%A7a+da+Bandeira!8m2!3d-22.9115489!4d-43.214002!10e1!16s%2Fg%2F11w_m499tt!3m6!1s0x997f10a6d8f151:0x8f170e262709198a!8m2!3d-22.9115489!4d-43.214002!10e5!16s%2Fg%2F11w_m499tt?authuser=2&entry=ttu&g_ep=EgoyMDI1MDQwOS4wIKXMDSoASAFQAw%3D%3D",
+  "https://www.google.com.br/maps/place/Drogaria+Brasil+Pra%C3%A7a+da+Bandeira/@-22.9114269,-43.2140818,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipP0ZwYe9Z5LMdXmTrzIPo_S-dadNmhRrsTSaVIi!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipP0ZwYe9Z5LMdXmTrzIPo_S-dadNmhRrsTSaVIi%3Dw203-h214-k-no!7i2092!8i2212!4m16!1m8!3m7!1s0x997f10a6d8f151:0x8f170e262709198a!2sDrogaria+Brasil+Pra%C3%A7a+da+Bandeira!8m2!3d-22.9115489!4d-43.214002!10e1!16s%2Fg%2F11w_m499tt!3m6!1s0x997f10a6d8f151:0x8f170e262709198a!8m2!3d-22.9115489!4d-43.214002!10e5!16s%2Fg%2F11w_m499tt?authuser=2&entry=ttu&g_ep=EgoyMDI1MDQwOS4wIKXMDSoASAFQAw%3D%3D",
   "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=800&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1567307668696-7ff50c068be8?q=80&w=800&auto=format&fit=crop"
 ];

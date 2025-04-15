@@ -36,7 +36,7 @@ const featuredProducts: ProductProps[] = [
     id: "4",
     name: "Fralda Geriátrica Tamanho M - Pacote com 10 unidades",
     price: 35.90,
-    image: "https://images.unsplash.com/photo-1633414715275-fd4a1e59f10a?q=80&w=500&auto=format&fit=crop",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjrE9X7WQhCQdFiVIsPM6d0CNvePWNxL9XRw&s",
     category: "Cuidados Pessoais",
     type: "Original",
     brand: "CareBrasil"
@@ -65,7 +65,7 @@ const featuredProducts: ProductProps[] = [
     id: "7",
     name: "Desodorante Antitranspirante Roll-on - 50ml",
     price: 18.50,
-    image: "https://images.unsplash.com/photo-1619451683077-500fa1ea485f?q=80&w=500&auto=format&fit=crop",
+    image: "https://ikesaki.vtexassets.com/arquivos/ids/297451-800-auto?v=638094847252530000&width=800&height=auto&aspect=true",
     category: "Higiene",
     type: "Original",
     brand: "FreshBrasil"
@@ -74,7 +74,7 @@ const featuredProducts: ProductProps[] = [
     id: "8",
     name: "Creme Dental com Flúor - 90g",
     price: 7.90,
-    image: "https://images.unsplash.com/photo-1612387290123-34af734b5063?q=80&w=500&auto=format&fit=crop",
+    image: "https://obahortifruti.vtexassets.com/arquivos/ids/9781429/Creme-Dental-Com-Fluor-Maxima-Protecao-Anticaries-Colgate-90-G.png?v=638652954919800000",
     category: "Higiene",
     type: "Original",
     brand: "DentBrasil"
