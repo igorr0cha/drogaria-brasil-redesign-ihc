@@ -6,6 +6,7 @@ import StoreSection from '@/components/StoreSection';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import SearchBar from '@/components/SearchBar';
 import ReviewSection from '@/components/ReviewSection';
+import CustomerReviewsSection from '@/components/CustomerReviewsSection';
 import { initGlobalAnimations } from '@/utils/scrollAnimations';
 
 const Index = () => {
@@ -27,6 +28,7 @@ const Index = () => {
       <FeatureSection />
       <FeaturedProducts />
       <StoreSection />
+      <CustomerReviewsSection />
       <ReviewSection />
     </div>
   );

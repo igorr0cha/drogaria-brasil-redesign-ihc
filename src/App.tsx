@@ -17,6 +17,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import AuthPage from "./pages/AuthPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 // Components
 import Cart from "./components/Cart";
@@ -42,6 +43,9 @@ const App = () => (
               <Route path="/promocoes" element={<ProductsPage />} />
               <Route path="/produto/:id" element={<ProductDetailPage />} />
               <Route path="/busca" element={<ProductsPage />} />
+              
+              {/* Checkout */}
+              <Route path="/checkout" element={<CheckoutPage />} />
               
               {/* Páginas Institucionais */}
               <Route path="/sobre" element={<AboutPage />} />

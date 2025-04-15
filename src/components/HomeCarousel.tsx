@@ -1,5 +1,6 @@
 
 import React from "react";
+import { Link } from "react-router-dom";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useCarousel } from "@/hooks/useCarousel";
 
@@ -59,9 +60,9 @@ const HomeCarousel: React.FC = () => {
                         <p className="text-xl md:text-2xl mb-6 animate-fade-in">
                           {slide.slogan}
                         </p>
-                        <button className="btn-primary animate-fade-in">
+                        <Link to="/sobre" className="btn-primary animate-fade-in">
                           Saiba mais
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
