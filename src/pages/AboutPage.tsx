@@ -75,7 +75,7 @@ const AboutPage: React.FC = () => {
           </div>
           <div className="scroll-animation">
             <img 
-              src="https://images.unsplash.com/photo-1563453392212-326f5e854473?q=80&w=800&auto=format&fit=crop"
+              src="https://images.pexels.com/photos/5934485/pexels-photo-5934485.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
               alt="Farmácia tradicional"
               className="rounded-lg shadow-lg"
             />
