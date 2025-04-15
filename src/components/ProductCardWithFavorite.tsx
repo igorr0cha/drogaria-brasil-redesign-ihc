@@ -30,7 +30,14 @@ const ProductCardWithFavorite: React.FC<ProductProps> = (product) => {
   const favorite = isFavorite(id);
   
   const handleAddToCart = () => {
-    addToCart(product);
+    // Using the modified CartContext that accepts a product without requiring quantity
+    addToCart({
+      id,
+      name,
+      price,
+      image,
+      quantity: 1 // Set a default quantity
+    });
     
     toast({
       title: "Produto adicionado",

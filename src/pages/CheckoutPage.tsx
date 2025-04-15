@@ -13,7 +13,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from '@/comp
 
 const CheckoutPage: React.FC = () => {
   const navigate = useNavigate();
-  const { cart, total, clearCart } = useCart();
+  const { cartItems, total, clearCart } = useCart();
   const { toast } = useToast();
   const [isLoggedIn] = useState(false);
   const [activeStep, setActiveStep] = useState(1);
@@ -398,7 +398,7 @@ const CheckoutPage: React.FC = () => {
               <h2 className="text-xl font-bold mb-4">Resumo do Pedido</h2>
               
               <div className="space-y-4 mb-6">
-                {cart.map((item) => (
+                {cartItems.map((item) => (
                   <div key={item.id} className="flex items-center">
                     <div className="h-16 w-16 rounded-md overflow-hidden flex-shrink-0">
                       <img 

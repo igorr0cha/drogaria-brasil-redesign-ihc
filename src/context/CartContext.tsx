@@ -12,7 +12,7 @@ export interface CartItem {
 
 interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (product: CartItem) => void;
+  addToCart: (product: Omit<CartItem, 'quantity'> & { quantity?: number }) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   isOpen: boolean;
@@ -31,14 +31,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
   
-  const addToCart = (product: CartItem) => {
+  const addToCart = (product: Omit<CartItem, 'quantity'> & { quantity?: number }) => {
     setCartItems(prevItems => {
       const existingItemIndex = prevItems.findIndex(item => item.id === product.id);
       
       if (existingItemIndex >= 0) {
         // Se o produto já existe, aumenta a quantidade
         const updatedItems = [...prevItems];
-        updatedItems[existingItemIndex].quantity += product.quantity;
+        updatedItems[existingItemIndex].quantity += product.quantity || 1;
         
         toast({
           title: "Produto atualizado no carrinho",
@@ -55,7 +55,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           variant: "default"
         });
         
-        return [...prevItems, product];
+        return [...prevItems, { ...product, quantity: product.quantity || 1 }];
       }
     });
     
